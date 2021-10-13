@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Common/Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    List Products
+                    <a href="@Url.Action("Store", "Product")" class="btn btn-success">Add</a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Number</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = 1;
+                            }
+                            @foreach (var p in ViewBag.products)
+                            {
+
+                                <tr>
+                                    <td>@p.id</td>
+                                    <td>@p.pro_name</td>
+                                    <td>@p.pro_number</td>
+                                    <td>@p.created_at</td>
+                                    <td>@p.updated_at</td>
+                                    <td><a href="@Url.Action("Edit","Product",new {id=p.id})" class="badge badge-warning">Modify</a></td>
+                                    <td><a href="@Url.Action("Delete","Product",new {id=p.id})" class="badge badge-danger">Remove</a></td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
